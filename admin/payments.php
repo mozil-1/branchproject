@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-if(!isset($_SESSION["uid"])){
-	// header("location:index.php");
-}
+// if(!isset($_SESSION["uid"])){
+// 	header("location:index.php");
+// }
 
 if (isset($_GET["st"])) {
 
@@ -72,7 +72,7 @@ if (isset($_GET["st"])) {
 									<div class="panel panel-default">
 										<div class="panel-heading"></div>
 										<div class="panel-body">
-											<h1>Thankyou </h1>
+											<h1>Thank you </h1>
 											<hr/>
 											<p>Hello <?php echo "<b>".$_SESSION["name"]."</b>"; ?>,Your payment process is 
 											successfully completed and your Transaction id is <b><?php echo $trx_id; ?></b><br/>

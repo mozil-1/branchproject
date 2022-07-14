@@ -1,13 +1,12 @@
 
 <?php 
 session_start();  
-if (!isset($_SESSION['admin_id'])) {
-  header("location:login.php");
-}
+// if (!isset($_SESSION['admin_id'])) {
+//   header("location:index.php");
+// }
 
-// include "./templates/top.php"; 
 ?>
-<?php include "./layout/navbar.php"; ?>
+ <?php include "./layout/navbar.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +24,7 @@ if (!isset($_SESSION['admin_id'])) {
    
   </head>
   <body>
-    <div class="container-fluid display-table">
+    <div class="container display-table">
       <div class="row display-table-row">
         <!--side bar-->
         <div class="col-md-2 col-sm-1 hidden-xs display-table-cell valign-top" id="side-menu">
@@ -69,9 +68,9 @@ if (!isset($_SESSION['admin_id'])) {
               </a>
             </li>
              <li class="link">
-              <a href="payments.php">
+              <a href="payments">
                 <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
-                <span class="hidden-sm hidden-xs">Payments</span>
+                <span class="hidden-sm hidden-xs">Report</span>
               </a>
             </li>
             <li class="link setting-btn">
@@ -134,50 +133,47 @@ if (!isset($_SESSION['admin_id'])) {
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
-            <tr>
+            <tr align='center'>
               <th>#</th>
-              <th>Firstname</th>
-              <th>Lastname</th>
+              <th>Username</th>
               <th>Email</th>
               <th>Password</th>
             </tr>
           </thead>
           <tbody id="admin_list">
-            <tr>
-              <td>1,001</td>
-              <td>Lorem</td>
-              <td>ipsum</td>
-              <td>dolor</td>
-              <td>sit</td>
-            </tr>
+          <?php
+include("classes/db.php");
+$sql = "SELECT * FROM admin";
+        $res = mysqli_query($con, $sql); 
+        while ($r = mysqli_fetch_assoc($res)) {
+      ?>
+          <tr align='center'>
+            <th scope='row'><?php echo $r['id']; ?></th>
+            <td><?php echo $r['username']; ?></td>
+            <td><?php echo $r['email']; ?></td>
+            <td><?php echo $r['password']; ?></td>
+
+         </tr>    
+<?php
+        }
+            ?>
           </tbody>
         </table>
       </div>
     </main>
   </div>
 </div>
-
-        <div class="row">
-          <footer id="admin-footer" class="cle">
-            <div class="pull-left">
-              <b>Copyright </b>&copy; 2021
-            </div>
-            <div class="pull-right">
-              <b>Admin System</b>
-            </div>
-          </footer>
-        </div>
-
-        
+   
         </div>
       </div>
     </div>
-
+    
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/admin.js"></script>
     <script src="js/custom.js"></script>
+    <?php include "layout/footer.php"; ?>
   </body>
 </html>

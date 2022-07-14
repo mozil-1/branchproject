@@ -81,7 +81,7 @@ include 'layout/head.php';
 
 	
 	<?php 
-	 include 'admin/config/db.php';
+	include 'function/functions.php';
 	if(isset($_POST['login'])){
 	
 		$c_email = $_POST['email'];

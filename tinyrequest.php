@@ -68,8 +68,6 @@
       <div class="card mt-5 px-3 py-4">
         <div class="d-flex flex-row justify-content-around">
           <div class="mpesa"><span>Mpesa </span></div>
-          <div><span>Paypal</span></div>
-          <div><span>Card</span></div>
         </div>
         <div class="media mt-4 pl-2">
           <img src="img/products/57.jpg" class="mr-3" height="75" />
@@ -79,7 +77,7 @@
         </div>
         <div class="media mt-3 pl-2">
                           <!--bs5 input-->
-            <form class="row g-3" action="./tinyresponse.php" method="POST">
+            <form class="row g-3" action="tinyresponse.php" method="POST">
             
                 <div class="col-12">
                   <label for="inputAddress" class="form-label">Amount</label>
@@ -91,7 +89,7 @@
                 </div>
              
                 <div class="col-12">
-                  <button type="submit" class="btn btn-success" name="submit" value="submit">Donate</button>
+                  <button type="submit" class="btn btn-success" name="submit" value="submit">SUBMIT</button>
                 </div>
               </form>
               <!--bs5 input-->

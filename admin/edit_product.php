@@ -90,7 +90,7 @@ if(isset($_GET['edit_pro'])){
                 </div>
                 <div class="form-group">
                   <label class="">Product Description</label>
-                  <textarea name="description" class="form-control summernote" placeholder="Description"><?php echo $pro_desc;?></textarea>
+                  <textarea name="description" class="form-control summernote"><?php echo $pro_desc;?></textarea>
                 </div>
                 <div class="form-group">
                   <label class="">Product Keywords</label>

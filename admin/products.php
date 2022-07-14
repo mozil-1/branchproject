@@ -149,6 +149,7 @@
     $pro_title = $row_pro['product_title'];
     $pro_image = $row_pro['product_image'];
     $pro_price = $row_pro['product_price'];
+    $pro_desc = $row_pro['product_desc'];
     $i++;
   
   ?>
@@ -157,6 +158,7 @@
     <td><?php echo $pro_title;?></td>
     <td><img src="product_images/<?php echo $pro_image;?>" width="60" height="60"/></td>
     <td> Kshs: <?php echo $pro_price;?></td>
+    <td><?php echo $pro_desc;?></td>
     <td><a class="btn btn-xs btn-warning"href="edit_product.php?edit_pro=<?php echo $pro_id; ?>">Edit</a>
     <a  class="btn btn-xs btn-danger"href="delete_pro.php?delete_pro=<?php echo $pro_id;?>">Delete</a></td>
   

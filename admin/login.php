@@ -1,5 +1,5 @@
 
-<?php include_once("./layout/navbar.php"); ?>
+<?php include_once("layout/navbar.php"); ?>
 <?php include('server.php') ?>
 
 <div class="container-fluid mt-5 mb-5">

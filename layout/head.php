@@ -48,8 +48,8 @@
 
                     <li><a href="http://localhost/school-project/contact.php">Contact</a>
                     </li>
-                   <li><a href="http://localhost/school-project/login.php" >Login</a>
-                    </li>
+                   <!-- <li><a href="http://localhost/school-project/login.php" >Login</a>
+                    </li> -->
                     <li ><a href="http://localhost/school-project/register.php">Register</a>
                     </li>
                     <li ><a href="#">Recently viewed</a>

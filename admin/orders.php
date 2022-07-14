@@ -112,7 +112,7 @@
         </div>
         <div id="content">
           <header class="clearfix">
-            <h2 class="page_title">Customer List</h2>
+            <h2 class="page_title">orders page</h2>
             
           </header>
           <div class="content-inner">

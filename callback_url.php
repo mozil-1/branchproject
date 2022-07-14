@@ -43,9 +43,8 @@
           die("<h1>Connection failed:</h1> " . $conn->connect_error);
       } else {
   
-  
-          $insert = $conn->query("INSERT INTO mdata(CheckoutRequestID,ResultCode,amount,MpesaReceiptNumber,PhoneNumber) VALUES ('$CheckoutRequestID','$Resultcode','$Amount','$MpesaReceiptNumber','$PhoneNumber')");
-          $conn = null;
+        $insert = $conn->query("INSERT INTO mdata(Tr_id,PhoneNumber,MpesaReceiptNumber,amount,ResultCode) VALUES ('$CheckoutRequestID','$PhoneNumber','$MpesaReceiptNumber','$Amount','$Resultcode')");
+         
       }
   }
 

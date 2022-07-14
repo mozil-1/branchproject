@@ -102,23 +102,55 @@ $uid = $_SESSION['customerid'];
                         <hr>
 
                         <h3>Personal details</h3>
-                        <?php
+                        <!-- table -->
+                        <table class="table table-striped" style="width:80%;">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Address1</th>
+      <th scope="col">Address2</th>
+      <th scope="col">City</th>
+      <th scope="col">State</th>
+      <th scope="col">Country</th>
+      <th scope="col">Company</th>
+      <th scope="col">Zip Code</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Email</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  
+  <?php
             $csql = "SELECT u1.firstname, u1.lastname, u1.address1, u1.address2, u1.city, u1.state, u1.country, u1.company, u.email, u1.mobile, u1.zip FROM users u JOIN usersmeta u1 WHERE u.id=u1.uid AND u.id=$uid";
             $cres = mysqli_query($con, $csql);
             if(mysqli_num_rows($cres) == 1){
               $cr = mysqli_fetch_assoc($cres);
-              echo "<p>".$cr['firstname'] ." ". $cr['lastname'] ."</p>";
-              echo "<p>".$cr['address1'] ."</p>";
-              echo "<p>".$cr['address2'] ."</p>";
-              echo "<p>".$cr['city'] ."</p>";
-              echo "<p>".$cr['state'] ."</p>";
-              echo "<p>".$cr['country'] ."</p>";
-              echo "<p>".$cr['company'] ."</p>";
-              echo "<p>".$cr['zip'] ."</p>";
-              echo "<p>".$cr['mobile'] ."</p>";
-              echo "<p>".$cr['email'] ."</p>";
-            }
-          ?>
+              ?>
+              <tr>
+                <td><?php echo "<p>".$cr["firstname"] ."</p>"; ?> </td>
+                <td><?php echo "<p>".$cr["lastname"] ."</p>"; ?></td>
+                <td><?php echo "<p>".$cr["address1"] ."</p>"; ?></td>
+                <td><?php echo "<p>".$cr["address2"] ."</p>"; ?></td>
+                <td><?php echo "<p>".$cr["city"] ."</p>"; ?></td>
+                <td><?php echo "<p>".$cr["state"] ."</p>"; ?></td>
+                <td><?php echo "<p>".$cr["country"] ."</p>"; ?></td>
+                <td><?php echo "<p>".$cr["company"] ."</p>"; ?></td>
+                <td><?php echo "<p>".$cr["zip"] ."</p>"; ?></td>
+                <td><?php echo "<p>".$cr["mobile"] ."</p>"; ?></td>
+                <td><?php echo "<p>".$cr["email"] ."</p>"; ?></td>
+             </tr>
+           <?php }?>
+        
+  </tbody>
+</table>
+            
+            
+              
+             
+              
+           
                     </div>
                 </div>
 

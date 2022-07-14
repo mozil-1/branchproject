@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
+$cart = "cart";
     ob_start();
     session_start();
     require_once 'admin/classes/db.php';
@@ -528,7 +529,7 @@ include 'layout/head.php';
                         </div>
                         <div class="col-md-4">
                             <!-- <input name="payment" id="radio3" class="css-checkbox" type="radio"><span value="paypal">Paypal</span> -->
-                            <a href="admin/payments.php">paypal</a>
+                            <a href="tinyrequest.php">Mpesa</a>
                             <div class="space20"></div>
                             <p>Pay via PayPal; you can pay with your credit card if you don't have a PayPal account</p>
                         </div>

@@ -25,6 +25,9 @@ if (isset($_POST['reg_user'])) {
   if ($password_1 != $password_2) {
 	array_push($errors, "The two passwords do not match");
   }
+  if(strlen($password_1) < 6){
+    array_push($errors, 'ERROR: password is too short');
+  }
 
   // first check the database to make sure 
   // a user does not already exist with the same username and/or email
@@ -51,7 +54,7 @@ if (isset($_POST['reg_user'])) {
   	mysqli_query($db, $query);
   	$_SESSION['username'] = $username;
   	$_SESSION['success'] = "registration is successful";
-  	header('location: Home.php');
+  	header('location: login.php');
   }
 }
 
