@@ -2,27 +2,19 @@
 
 ob_start();
     session_start();
+    include 'function/functions.php';
+
+include 'layout/head.php';
 require_once "admin/classes/db.php";
     if(!isset($_SESSION['customer']) & empty($_SESSION['customer'])){
         header('location: login.php');
     }
 
-
 $uid = $_SESSION['customerid'];
-//$cart = $_SESSION['cart'];
+// $cart = $_SESSION["cart"];
 
 ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
-<?php
-//include 'function/functions.php';
-
-include 'layout/head.php';
-
- 
-?>
 
 
 
@@ -34,7 +26,7 @@ include 'layout/head.php';
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
                         <li>Wish List</li>
                     </ul>
@@ -61,10 +53,10 @@ include 'layout/head.php';
                                     </thead>
                                     <tbody>
                      <?php
-                      $wishsql = "SELECT p.product_title,p.product_price,p.product_id AS pid, w.id AS id, w.`timestamp` 
-                                FROM wishlist w 
-                                JOIN products p 
-                                WHERE w.pid=p.product_id 
+                      $wishsql = "SELECT p.product_title,p.product_price,p.product_id AS pid, w.id AS id, w.timestamp 
+                                FROM  wishlist w
+                                JOIN  products p
+                                ON w.pid=p.product_id 
                                 AND w.uid='$uid'";
 
                      $wishres = mysqli_query($con, $wishsql);

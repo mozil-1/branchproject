@@ -14,42 +14,53 @@ include 'layout/head.php';
             <?php include('admin/errors.php'); ?>
               <div class="form-group">
                 <div class="form-row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-label-group">
-                    <label for="firstName">First name</label>
-                      <input type="text" id="firstName" name="firstname" class="form-control" value="<?php echo $firstName; ?>" autofocus="autofocus">
+                        <label for="firstName">First name</label>
+                        <input type="text" id="firstName" name="firstname" class="form-control" value="<?php echo $firstName; ?>" autofocus="autofocus">
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-label-group">
-                    <label for="lastName">Last name</label>
+                      <label for="lastName">Last name</label>
                       <input type="text" id="lastName" name="lastname" class="form-control" value="<?php echo $lastName; ?>">
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label>E-mail Address</label>
-                  <input type="email" name="email" value="<?php echo $email; ?>" class="form-control">
-                </div>
-              </div>
+                
+                  <div class="col-md-12">
+                    <div class="form-label-group">
+                      <label for="lastName">Username</label>
+                      <input type="text" id="username" name="username" class="form-control" value="<?php echo $username; ?>">
+                    </div>
+                  </div>
+                
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <label>E-mail Address</label>
+                      <input type="email" name="email" value="<?php echo $email; ?>" class="form-control">
+                    </div>
+                  </div>
               <div class="form-group">
                 <div class="col-md-6">
                   <label>Password</label>
                   <input type="password" name="password" value="<?php echo $password; ?>" class="form-control">
                 </div>
+              </div>
+              <div class="form-group">
                 <div class="col-md-6">
                   <label>Re-enter Password</label>
                   <input type="password" name="passwordagain" value="<?php echo $password; ?>" class="form-control">
                 </div>
               </div>
+              <div class="form-group">
                   <div class="col-md-12">
                     <div class="space20"></div>
                     <p></p>
                     <button type="submit" name="register" class="btn btn-md pull-right">Register</button>
                   </div>
                 </div>
+                </div>
+              </div>
             </form>
             <div class="text-center">
               <a class="d-block small mt-3" href="login.php">Login Page</a>

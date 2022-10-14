@@ -48,7 +48,7 @@ function getPro(){
 	
 		$pro_id = $row_pro['product_id'];
 		$pro_cat = $row_pro['product_cat'];
-		//$pro_brand = $row_pro['product_brand'];
+		// $pro_brand = $row_pro['product_brand'];
 		$pro_title = $row_pro['product_title'];
 		$pro_price = $row_pro['product_price'];
 		$pro_image = $row_pro['product_image'];
@@ -59,8 +59,10 @@ function getPro(){
 		
 </div>
 <ul class='list-inline featured-item-header text-center'>
-                  <li><strong>
-                     $pro_title </strong>
+                  <li>
+                    <strong>
+                     $pro_title 
+                     </strong>
                   </li>
                   
                                 </ul>
@@ -71,7 +73,7 @@ function getPro(){
                        $pro_title
                      </h3>
                      
-<p>KShs: $pro_price</p>
+<p class='p-3'>KShs: $pro_price</p>
 
 <a href='single.php?pro_id=$pro_id' class='button high_device_link'><span>✔</span>View Detail</a>
 <a href='single.php?pro_id=$pro_id' class='small_device_link'>View Detail</a>  
@@ -136,7 +138,7 @@ function getCatPro(){
                        $pro_title
                      </h3>
                      
-<p>KShs: $pro_price</p>
+<p class='p-3'>KShs: $pro_price</p>
 
 <a href='single.php?pro_id=$pro_id' class='button high_device_link'><span>✔</span>View Detail</a>
 <a href='single.php?pro_id=$pro_id' class='small_device_link'>View Detail</a>  
@@ -208,11 +210,11 @@ echo"<div class='col-lg-4 col-sm-6 col-md-6 featured-item'>
         <figure>
 <a href='single.php?pro_id=$pro_id' ><img class='img-responsive img-preload' src='admin/product_images/$image' alt='' ></a>
 <figcaption>
-                     <h3>
+                     <h3 class='p-3'>
                        $pro_title
                      </h3>
                      
-<p>KShs: $price</p>
+<p class='p-3'> KShs: $price</p>
 
 <a href='single.php?pro_id=$pro_id' class='button high_device_link'><span>✔</span>View Detail</a>
 <a href='single.php?pro_id=$pro_id' class='small_device_link'>View Detail</a>  
@@ -334,12 +336,12 @@ echo"<div class='col-lg-4 col-sm-6 col-md-6 featured-item'>
         
 </div>
 <ul class='list-inline featured-item-header text-center'>
-                  <li><strong>
-                     $pro_title </strong>
+                  <li>
+                  <strong>$pro_title </strong>
                   </li>
                   
-                                </ul>
-        <figure>
+</ul>
+<figure>
 <a href='single.php?pro_id=$pro_id' ><img class='img-responsive img-preload' src='admin/product_images/$image' alt='' ></a>
 <figcaption>
                      <h3>

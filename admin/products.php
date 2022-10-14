@@ -20,7 +20,7 @@
           <h1 class="hidden-sm hidden-xs">Navigation</h1>
           <ul>
             <li class="link ">
-              <a href="register.php">
+              <a href="index.php">
                 <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Dashboard</span>
               </a>
@@ -57,9 +57,9 @@
               </a>
             </li>
              <li class="link">
-              <a href="payments.php">
+              <a href="../Report.php">
                 <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
-                <span class="hidden-sm hidden-xs">Payments</span>
+                <span class="hidden-sm hidden-xs">Report</span>
               </a>
             </li>
             <li class="link setting-btn">

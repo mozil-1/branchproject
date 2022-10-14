@@ -106,7 +106,8 @@ header.carousel .fill {
     overflow: hidden;
 }
 .caption-slide-up img {
-    max-width: 100%;
+    width: 100%;
+    height: 20vh;
     display: block;
     position: relative;
     -webkit-transition: all 0.5s ease-in-out;

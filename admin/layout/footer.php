@@ -20,13 +20,33 @@
                 <hr>
 
                 <h4>User section</h4>
+                <?php
+                            if (isset($_SESSION['admin_id'])) {
+                                ?>
+                                    <a class="nav-link" href="logout.php">Logout</a>
+                                <?php
+                            }else{
+                                $uriAr = explode("/", $_SERVER['REQUEST_URI']);
+                                $page = end($uriAr);
+                                if ($page === "login.php") {
+                                    ?>
+                                        <a class="nav-link" href="http://localhost/school-project/admin/register.php">Register</a>
+                                    <?php
+                                }else{
+                                    ?>
+                                        <a class="nav-link" href="http://localhost/school-project/admin/login.php">Login</a>
+                                    <?php
+                                }
 
-                <ul>
-                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                    </li>
-                    <li><a href="register.php">Regiter</a>
-                    </li>
-                </ul>
+
+                                
+                            }
+
+    	                ?>
+                        </ul>
+                        <!-- reglog -->
+
+         
 
                 <hr class="hidden-md hidden-lg hidden-sm">
 

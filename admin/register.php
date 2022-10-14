@@ -1,12 +1,14 @@
-<?php include('layout/navbar.php') ?>
-<?php include('server.php') ?>
+<?php
+include('layout/navbar.php') ;
+include('registerpro.php') ;
+?>
 
-<div class="container-fluid mt-5 mb-5">
+<div class="container-fluid  p-3 mt-5 mb-5">
 <div class="header">
-  	<h2>Admin Registration</h2>
+  	<h3>USER REGISTRATION PAGE</h3>
   </div>
 	
-  <form method="post" action="register.php">
+  <form method="POST" action="register.php">
   	<?php include('errors.php'); ?>
   	<div class="input-group">
   	  <label>Username</label>
@@ -39,12 +41,12 @@
 
 <script type="text/javascript" src="./js/main.js"></script>
 <script type="text/javascript" src="./js/main.js"></script>
-    <script type="text/javascript" src="./js/dashboard.js"></script>
-    <script type="text/javascript" src="./js/Admin.js"></script>
-    <script type="text/javascript" src="./js/custom.js"></script>
-    <script type="text/javascript" src="./js/front.js"></script>
-    <script type="text/javascript" src="./js/modernizr.js"></script>
-    <script type="text/javascript" src="./js/npm.js"></script>
+<script type="text/javascript" src="./js/dashboard.js"></script>
+<script type="text/javascript" src="./js/Admin.js"></script>
+<script type="text/javascript" src="./js/custom.js"></script>
+<script type="text/javascript" src="./js/front.js"></script>
+<script type="text/javascript" src="./js/modernizr.js"></script>
+<script type="text/javascript" src="./js/npm.js"></script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

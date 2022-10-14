@@ -485,7 +485,7 @@ h1 {
 }
 @media (max-width: 767px) {
   #content .product .flip-container img.img-responsive {
-    min-width: 100%;
+    width: 100%;
   }
 }
 #content .product .flip-container,

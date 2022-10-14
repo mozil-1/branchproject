@@ -13,7 +13,7 @@ include 'layout/head.php';
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
                         <li>Contact</li>
                     </ul>

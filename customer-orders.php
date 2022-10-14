@@ -9,7 +9,7 @@
     }
 include 'layout/head.php';
 $uid = $_SESSION['customerid'];
-//$cart = $_SESSION['cart'];
+// $cart = $_SESSION['cart'];
 ?>
 
 
@@ -84,7 +84,7 @@ $uid = $_SESSION['customerid'];
                                 </thead>
                                 <tbody>
                                     <?php
-                    $ordsql = "SELECT * FROM orders WHERE uid='$uid'";
+                    $ordsql = "SELECT * FROM orders WHERE user_id='$uid'";
                     $ordres = mysqli_query($con, $ordsql);
                     while($ordr = mysqli_fetch_assoc($ordres)){
                 ?>

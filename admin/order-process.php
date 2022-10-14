@@ -10,7 +10,7 @@ if(isset($_POST) & !empty($_POST)){
 		$message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
 		$id = filter_var($_POST['orderid'], FILTER_SANITIZE_NUMBER_INT);
 
-			echo $ordprcsql = "INSERT INTO ordertracking (orderid, status, message) VALUES ('$id', '$status', '$message')";
+		    $ordprcsql = "INSERT INTO ordertracking (order_id, status, message) VALUES ('$id', '$status', '$message')";
 			$ordprcres = mysqli_query($con, $ordprcsql) or die(mysqli_error($con));
 			if($ordprcres){
 				$ordupd = "UPDATE orders SET orderstatus='$status' WHERE id=$id";

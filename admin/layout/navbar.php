@@ -39,38 +39,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 
-    <style>
-      .fa-trash-alt,.fa-pencil-alt{
-        color: #fff;
-      }
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-     
-      .classp{
-        width:100% ;
-        height:30px;
-      }
-      .classp .classh{
-        margin-top:-13px;
-        text-align: center;
-      }
-      hr{
-        background-color: white;
-      }
-      
-    </style>
+    
     <!-- Custom styles for this template -->
     <link href="./css/dashboard.css" rel="stylesheet">
   </head>
@@ -84,23 +53,21 @@
     <li class="nav-item text-nowrap">
     	<?php
     		if (isset($_SESSION['admin_id'])) {
-    			?>
-    				<a class="nav-link" href="../admin/admin-logout.php">Sign out</a>
-    			<?php
-    		}else{
-    			$uriAr = explode("/", $_SERVER['REQUEST_URI']);
-    			$page = end($uriAr);
-    			if ($page === "login.php") {
-    				?>
-	    				<a class="nav-link" href="../admin/register.php">Register</a>
-	    			<?php
-    			}else{
-    				?>
-	    				<a class="nav-link" href="../admin/login.php">Login</a>
-	    			<?php
-    			}
-
-
+          if($uriAr = explode("/", $_SERVER['REQUEST_URI'])){
+            $page = end($uriAr);
+            if ($page === "login.php") {
+              ?>
+                <a class="nav-link" href="../admin/admin-logout.php">Logout</a>
+              <?php
+            }else{
+              ?>
+                <a class="nav-link" href="../admin/login.php">Login</a>
+              <?php
+            }
+  
+  
+            
+          }
     			
     		}
 

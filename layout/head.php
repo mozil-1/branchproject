@@ -31,6 +31,7 @@
     <script src="js/respond.min.js"></script>
 
     <link rel="shortcut icon" href="favicon.png">
+    
 </head>
 
 <body>
@@ -39,7 +40,7 @@
  _________________________________________________________ -->
     <div id="top">
 
-        <div class="container">
+        <!-- <div class="container">
             <div class="col-md-6 offer" data-animate="fadeInDown">
                <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
             </div>
@@ -48,15 +49,15 @@
 
                     <li><a href="http://localhost/school-project/contact.php">Contact</a>
                     </li>
-                   <!-- <li><a href="http://localhost/school-project/login.php" >Login</a>
-                    </li> -->
+                    <li><a href="http://localhost/school-project/login.php" >Login</a>
+                    </li> 
                     <li ><a href="http://localhost/school-project/register.php">Register</a>
                     </li>
                     <li ><a href="#">Recently viewed</a>
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> -->
         <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
             <div class="modal-dialog modal-sm">
 

@@ -13,7 +13,7 @@ include 'layout/head.php';
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
                         <li>Contact</li>
                     </ul>
@@ -51,10 +51,10 @@ include 'layout/head.php';
 
                     <div class="box" id="contact">
                         <h1> About us </h1>
-<p> Mozilamo investments furniture firm is a fast growing carpentry firm located in Kitale town. The firm staff and employees work tirelessly to make sure their client get the best of their desire' A well equipped online stategist and public relations office work  to the best of their efforts to make sure there is a concrete relationship built between the firm and its clients.<p>
+<p> Mozilamo investments furniture firm is a fast growing carpentry firm located in Nairobi town. The firm staff and employees work tirelessly to make sure their client get the best of their desire' A well equipped online stategist and public relations office work  to the best of their efforts to make sure there is a concrete relationship built between the firm and its clients.<p>
 
 <h2> location </h2>
-<p> Mozilamo investments furniture firm main office is located in westland but deliveries are done within the surrounding towns of Kiambu and Nairobi.<p>
+<p> Mozilamo investments furniture firm main office is located in Nairobi but deliveries are done within the surrounding towns of Kiambu, westland and Nairobi.<p>
 
 
                         <hr>

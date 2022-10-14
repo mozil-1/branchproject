@@ -18,14 +18,14 @@ include 'layout/head.php';
  _________________________________________________________ -->
            <div id="advantages">
              <div class="box">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="col-md-12">
                             <h2>All Products by Category</h2>
                         </div>
                     </div>
                 </div>
 
-            <div class="container">
+            <div class="container-fluid">
                 <div class="agile_top_brands_grids">
                          <div class="category-tab"><!--category-tab-->
             <div class="col-sm-12">

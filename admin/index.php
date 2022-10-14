@@ -1,12 +1,13 @@
 
 <?php 
-session_start();  
-// if (!isset($_SESSION['admin_id'])) {
-//   header("location:index.php");
-// }
-
+session_start(); 
+include "./layout/navbar.php";
+ 
+if (!isset($_SESSION['username'])) {
+  $_SESSION['msg'] = "You must log in first";
+  header('location: login.php');
+}
 ?>
- <?php include "./layout/navbar.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,14 +25,14 @@ session_start();
    
   </head>
   <body>
-    <div class="container display-table">
+    <div class="container-fluid display-table">
       <div class="row display-table-row">
         <!--side bar-->
         <div class="col-md-2 col-sm-1 hidden-xs display-table-cell valign-top" id="side-menu">
           <h1 class="hidden-sm hidden-xs">Navigation</h1>
         <ul>
             <li class="link ">
-              <a href="Home.php">
+              <a href="index.php">
                 <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Dashboard</span>
               </a>
@@ -68,7 +69,7 @@ session_start();
               </a>
             </li>
              <li class="link">
-              <a href="payments">
+              <a href="../Report.php">
                 <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Report</span>
               </a>
@@ -109,7 +110,7 @@ session_start();
                     <span class="label label-message">  3</span></a>
                 </li>
                 <li>
-                  <a href="admin-logout.php" class="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>   Log out</a>
+                  <a href="logout.php" class="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>   Log out</a>
                 </li>
               </ul>
             </div>
@@ -138,6 +139,9 @@ session_start();
               <th>Username</th>
               <th>Email</th>
               <th>Password</th>
+              <th>Usertype</th>
+              <th>Action</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody id="admin_list">
@@ -146,12 +150,36 @@ include("classes/db.php");
 $sql = "SELECT * FROM admin";
         $res = mysqli_query($con, $sql); 
         while ($r = mysqli_fetch_assoc($res)) {
+          $reg_id = $r['id'];
+          $reg_username = $r['username'];
+          $reg_email = $r['email'];
+          $reg_password = $r['password'];
+          $reg_usertype = $r['user_type']; 
+          $reg_status = $r['status']; 
       ?>
           <tr align='center'>
             <th scope='row'><?php echo $r['id']; ?></th>
             <td><?php echo $r['username']; ?></td>
             <td><?php echo $r['email']; ?></td>
             <td><?php echo $r['password']; ?></td>
+            <td><?php echo $r['user_type']; ?></td>
+            <td>
+            <a class="btn  btn-warning" href="editregister.php?edit_reg=<?php echo $r['id']; ?>">Edit</a>
+            </td>
+            <td>
+              <?php
+              if ($r['status']==1){
+                // <a  href="status.php?status_reg='.$r['id'].'&status=0"></a>
+                echo '<p class="btn btn-success">Active</p>';
+
+              }else{
+                echo '<p class="btn btn-danger">Inactive</p>';
+                // <a  " href="status.php?status_reg='.$r['id'].'&status=1"></a>
+              }
+            
+              
+            ?>
+            </td>
 
          </tr>    
 <?php

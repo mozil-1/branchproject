@@ -25,7 +25,7 @@
           <h1 class="hidden-sm hidden-xs">Navigation</h1>
           <ul>
             <li class="link ">
-              <a href="">
+              <a href="index.php">
                 <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Dashboard</span>
               </a>
@@ -62,9 +62,9 @@
               </a>
             </li>
              <li class="link">
-              <a href="payments.php">
+              <a href="../Report.php">
                 <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
-                <span class="hidden-sm hidden-xs">Payments</span>
+                <span class="hidden-sm hidden-xs">Report</span>
               </a>
             </li>
             <li class="link setting-btn">
@@ -95,7 +95,7 @@
                 <li id="welcome" class=" hidden-xs">Welcome admin</li>
                 <li class="fixed-width">
                   <a href=""><span class="glyphicon glyphicon-bell" aria-hidden="true"></span>
-                    <span class="label label-warning">  3</span></a>
+                    <span class="label label-warning">3</span></a>
                 </li>
                 <li class="fixed-width">
                   <a href="">
@@ -103,7 +103,7 @@
                     <span class="label label-message">  3</span></a>
                 </li>
                 <li>
-                  <a href="" class="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>   Log out</a>
+                  <a href="login.php" class="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>   Log out</a>
                 </li>
               </ul>
             </div>
@@ -143,7 +143,7 @@
                 <tbody>
                   <?php 
   include("classes/db.php");
-  $sql = "SELECT o.id, o.totalprice, o.orderstatus, o.paymentmode, o.`timestamp`, u.firstname, u.lastname FROM orders o JOIN usersmeta u WHERE o.uid=u.uid ORDER BY o.id DESC";
+  $sql = "SELECT o.id, o.totalprice, o.orderstatus, o.paymentmode, o.`timestamp`, u.firstname, u.lastname FROM orders o JOIN usersmeta u WHERE o.user_id=u.userid ORDER BY o.id DESC";
           $res = mysqli_query($con, $sql); 
           while ($r = mysqli_fetch_assoc($res)) {
         ?>

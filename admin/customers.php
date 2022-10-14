@@ -2,7 +2,7 @@
   session_start();
   require_once 'classes/db.php';
   if(!isset($_SESSION['email']) & empty($_SESSION['email'])){
-    header('location: login.php');
+    // header('location: login.php');
   }
 ?>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@
           <h1 class="hidden-sm hidden-xs">Navigation</h1>
         <ul>
             <li class="link ">
-              <a href="">
+              <a href="index.php">
                 <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                 <span class="hidden-sm hidden-xs">Dashboard</span>
               </a>
@@ -64,9 +64,9 @@
               </a>
             </li>
              <li class="link">
-              <a href="payments.php">
+              <a href="../Report.php">
                 <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span>
-                <span class="hidden-sm hidden-xs">Payments</span>
+                <span class="hidden-sm hidden-xs">Report</span>
               </a>
             </li>
             <li class="link setting-btn">
@@ -84,11 +84,11 @@
             <div class="col-md-5">
               <nav class="navbar-default pull-left">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+               </button>
               </nav>
               <input type="text" id="header-search-field" name="" class="hidden-sm hidden-xs" placeholder="Search for something ---">
             </div>
@@ -105,13 +105,13 @@
                     <span class="label label-message">  3</span></a>
                 </li>
                 <li>
-                  <a href="" class="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>   Log out</a>
+                  <a href="login.php" class="logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>   Log out</a>
                 </li>
               </ul>
             </div>
           </header>
-
         </div>
+
         <div id="content">
           <header class="clearfix">
             <h2 class="page_title">Customer List</h2>
@@ -142,7 +142,7 @@
         </thead>
         <tbody>
         <?php   
-          $sql = "SELECT * FROM users u JOIN usersmeta u1 WHERE u.id=u1.uid";
+          $sql = "SELECT * FROM users u JOIN usersmeta u1 WHERE u.id=u1.userid";
           $res = mysqli_query($con, $sql); 
           while ($r = mysqli_fetch_assoc($res)) {
         ?>

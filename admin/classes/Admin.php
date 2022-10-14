@@ -37,5 +37,8 @@ if (isset($_POST['GET_ADMIN'])) {
 	exit();
 	
 }
+if ($_SERVER['REQUEST_METHOD']=='POST'){
+
+}
 
 ?>

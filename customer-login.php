@@ -1,118 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-include 'function/functions.php';
+session_start();
 include 'layout/head.php';
-?>
+include 'function/functions.php';
+require_once 'admin/classes/db.php';
 
+if(isset($_POST) && !empty($_POST)){
+	$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+	$password = $_POST['password'];
+	$sql = "SELECT * FROM admin WHERE email='$email' ";
+	$result = mysqli_query($con, $sql) or die(mysqli_error($con));
+	$count = mysqli_num_rows($result);
+	$r = mysqli_fetch_assoc($result);
 
+	if($count == 1){
+		if(password_verify($password, $r['password'])){
+			//echo "User exits, create session";
+			// $_SESSION['customer'] = $email;
+			// $_SESSION['customerid'] = $r['id'];
+			// $_SESSION['cart']  = $cart;
 
-    <div id="all">
+			$fmsg = "Invalid Login Credentials";
+            echo "<script>window.open('customer-login.php?message=1','_self')</script>";
 
-        <div id="content">
-            <div class="container">
+            // echo "<script>window.open('checkout.php','_self')</script>";
 
-                <div class="col-md-12">
-                    <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
-                        </li>
-                        <li>Checkout - Login</li>
-                    </ul>
-                </div>
-                <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-                	<div class="panel panel-default">
-
-                			  <div class="panel-heading">
-                					<h3 class="panel-title">Login</h3>
-                			  </div>
-                			  
-                		<div class="panel-body">
-                		   <form action="checkout.php" method="post">
-                          <div class="form-group">
-                                <input type="text" class="form-control" id="email-modal" placeholder="email" name="email">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="password-modal" placeholder="password" name="pass">
-                            </div>
-
-                            <p class="text-center">
-                                <button class="btn btn-primary" name="login"><i class="fa fa-sign-in"></i> Log in</button>
-                            </p>
-
-                        </form>
-                        <p class="text-center text-muted">Not registered yet?</p>
-                        <p class="text-center text-muted"><a href="register.php"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
-                		</div>
-                	</div>
-                	
-                </div>
-                
-                <!-- /.col-md-9 -->
-<div class="col-md-3">
-                   
-                 
-
-                </div>
-                <!-- /.col-md-3 -->
-
-            </div>
-            <!-- /.container -->
-        </div>
-        <!-- /#content -->
-      <?php include 'layout/footer.php';?>
-
-
-
-    <!-- *** SCRIPTS TO INCLUDE ***
- _________________________________________________________ -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.cookie.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/modernizr.js"></script>
-    <script src="js/bootstrap-hover-dropdown.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/front.js"></script>
-
-
-</body>
-
-</html>
-
-	
-	<?php 
-	include 'function/functions.php';
-	if(isset($_POST['login'])){
-	
-		$c_email = $_POST['email'];
-		$c_pass = $_POST['pass'];
-		
-		$sel_c = "select * from customers where customer_pass='$c_pass' AND customer_email='$c_email'";
-		
-		$run_c = mysqli_query($con, $sel_c);
-		
-		$check_customer = mysqli_num_rows($run_c); 
-		
-		if($check_customer==0){
-		
-		echo "<script>alert('Password or email is incorrect, plz try again!')</script>";
-		exit();
+		}else{
+			$_SESSION['customer'] = $email;
+			$_SESSION['customerid'] = $r['id'];
+			// $_SESSION['cart']  = $cart;
+			
+			echo "<script>window.open('checkout.php','_self')</script>";
 		}
-	
+	}else{
+		echo "<script>window.open('customer-login.php?message=1','_self')</script>";
 		
-		if($check_customer>0 ){
-		
-		
-		$_SESSION['customer_email']=$c_email; 
-		
-		echo "<script>alert('You logged in successfully, Thanks!')</script>";
-		echo "<script>window.open('checkout.php','_self')</script>";
-		
-		
-		}
 	}
-	
-	
-	?>
+}
 
-	
+
+?>
+<!-- SHOP CONTENT -->
+	<section id="content">
+		<div class="content-blog">
+			<div class="container">
+				<div class="row">
+					<div class="page_header text-center">
+						<h2>Shop - Account</h2>
+						<p>Tagline Here</p>
+					</div>
+					<div class="col-md-12">
+				<div class="row shop-login">
+				<div class="col-md-6">
+					<div class="box">
+					<div class="box-content">
+						<h3 class="heading text-center">I'm a Returning Customer</h3>
+						<div class="clearfix space40"></div>
+						<?php if(isset($_GET['message'])){
+								if($_GET['message'] == 1){
+						 ?><div class="alert alert-danger" role="alert"> <?php echo "Invalid Login Credentials"; ?> </div>
+
+						 <?php } }?>
+						<form class="logregform" method="post" action="customer-login.php">
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+										<label>E-mail Address</label>
+										<input type="email" name="email" value="" class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="clearfix space20"></div>
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12">
+										<!-- <a class="pull-right" href="#">(Lost Password?)</a> -->
+										<label>Password</label>
+										<input type="password" name="password" value="" class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="clearfix space20"></div>
+							<div class="row">
+								<div class="col-md-6">
+									<span class="remember-box checkbox">
+									<label for="rememberme">
+									<input type="checkbox" id="rememberme" name="rememberme">Remember Me
+									</label>
+									</span> 
+								</div>
+								<div class="col-md-6">
+									<p></p>
+									<button type="submit" class="button btn-md pull-right">Login</button>
+								</div>
+							</div>
+							<p>if not a member? please <a href="register.php">Register</a></p>
+
+						</form>
+					</div>
+				</div>
+			</div>
+			

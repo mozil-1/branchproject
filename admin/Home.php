@@ -33,7 +33,7 @@
     <?php  if (isset($_SESSION['username'])) : ?>
     	<p>Welcome <strong><?php echo $_SESSION['username']; ?></strong></p>
 		<br><br>
-    	<p><a class="btn btn-secondary" href="index.php?logout='1'" style="color: white;">logout</a></p>
+    	<p><a class="btn btn-secondary" href="login.php?logout='1'" style="color: white;">logout</a></p>
     <?php endif ?>
 </div>
 </div>

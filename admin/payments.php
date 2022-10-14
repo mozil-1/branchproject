@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-// if(!isset($_SESSION["uid"])){
-// 	header("location:index.php");
-// }
+if(!isset($_SESSION["uid"])){
+	header("location:index.php");
+}
 
 if (isset($_GET["st"])) {
 
@@ -90,7 +90,8 @@ if (isset($_GET["st"])) {
 
 				<?php
 			}
-		}else{
+		}
+		else{
 			header("location:index.php");
 		}
 		

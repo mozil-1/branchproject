@@ -13,7 +13,7 @@ session_start();
 }else{
     header('location:index.php');
 }
-   //$uid=$_SESSION['customerid']; 
+//    $uid=$_SESSION['customerid']; 
 ?>
 
 <?php
@@ -30,11 +30,11 @@ include 'layout/head.php';
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
-                        <li><a href="#">Products</a>
+                        <li><a href="all_product.php">Products</a>
                         </li>
-                        <li><a href="#">Furniture</a>
+                        <li><a href="all_product.php">Furniture</a>
                         </li>
                         <li><?php echo $prodr['product_title'];?></li>
                     </ul>

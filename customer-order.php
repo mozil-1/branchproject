@@ -9,7 +9,7 @@
     }
 include 'layout/head.php';
 $uid = $_SESSION['customerid'];
-//$cart = $_SESSION['cart'];
+// $cart = $_SESSION['cart'];
 ?>
 
 
@@ -19,14 +19,14 @@ $uid = $_SESSION['customerid'];
     <div id="all">
 
         <div id="content">
-            <div class="container">
+            <div class="container-fluid">
 
                 <div class="col-md-12">
 
                     <ul class="breadcrumb">
                         <li><a href="index.php">Home</a>
                         </li>
-                        <li><a href="">My orders</a>
+                        <li><a href="customer-orders.php">My orders</a>
                         </li>
                     </ul>
 
@@ -92,11 +92,11 @@ $uid = $_SESSION['customerid'];
                     }else{
                         header('location: customer-account.php');
                     }
-                    $ordsql = "SELECT * FROM orders WHERE uid='$uid' AND id='$oid'";
+                    $ordsql = "SELECT * FROM orders WHERE user_id='$uid' AND id='$oid'";
                     $ordres = mysqli_query($con, $ordsql);
                     $ordr = mysqli_fetch_assoc($ordres);
 
-                    $orditmsql = "SELECT * FROM orderitems o JOIN products p WHERE o.orderid=3 AND o.pid=p.product_id";
+                    $orditmsql = "SELECT * FROM orderitems o JOIN products p WHERE o.orderid=p.product_price AND o.pid=p.product_id";
                     $orditmres = mysqli_query($con, $orditmsql);
                     while($orditmr = mysqli_fetch_assoc($orditmres)){
                 ?>
@@ -162,7 +162,7 @@ $uid = $_SESSION['customerid'];
                             <div class="col-md-6">
                                 <h2>Invoice address</h2>
                                 <?php
-                        $csql = "SELECT u1.firstname, u1.lastname, u1.address1, u1.address2, u1.city, u1.state, u1.country, u1.company, u.email, u1.mobile, u1.zip FROM users u JOIN usersmeta u1 WHERE u.id=u1.uid AND u.id=$uid";
+                        $csql = "SELECT u1.firstname, u1.lastname, u1.address1, u1.address2, u1.city, u1.state, u1.country, u1.company, u.email, u1.mobile, u1.zip FROM admin u JOIN usersmeta u1 WHERE u.id=u1.userid AND u.id=$uid";
                         $cres = mysqli_query($con, $csql);
                         if(mysqli_num_rows($cres) == 1){
                             $cr = mysqli_fetch_assoc($cres);
@@ -182,7 +182,7 @@ $uid = $_SESSION['customerid'];
                             <div class="col-md-6">
                                 <h2>Shipping address</h2>
                                 <?php
-                        $csql = "SELECT u1.firstname, u1.lastname, u1.address1, u1.address2, u1.city, u1.state, u1.country, u1.company, u.email, u1.mobile, u1.zip FROM users u JOIN usersmeta u1 WHERE u.id=u1.uid AND u.id=$uid";
+                        $csql = "SELECT u1.firstname, u1.lastname, u1.address1, u1.address2, u1.city, u1.state, u1.country, u1.company, u.email, u1.mobile, u1.zip FROM admin u JOIN usersmeta u1 WHERE u.id=u1.userid AND u.id=$uid";
                         $cres = mysqli_query($con, $csql);
                         if(mysqli_num_rows($cres) == 1){
                             $cr = mysqli_fetch_assoc($cres);

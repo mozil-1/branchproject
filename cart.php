@@ -4,6 +4,7 @@
 <?php 
 session_start();
 require_once 'admin/classes/db.php';
+
 $cart = $_SESSION['cart'];
 
 include 'layout/head.php';
@@ -15,7 +16,7 @@ include 'layout/head.php';
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
                         <li>Shopping cart</li>
                     </ul>
@@ -112,7 +113,7 @@ include 'layout/head.php';
                                 </div>
                                 <div class="pull-right">
                                     
-                                    <a href="checkout.php" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
+                                    <a href="customer-login.php" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
                                     </a>
                                 </div>
                             </div>

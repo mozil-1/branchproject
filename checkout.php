@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-$cart = "cart";
+$cart = 'cart';
     ob_start();
     session_start();
     require_once 'admin/classes/db.php';
-    if(!isset($_SESSION['customer']) & empty($_SESSION['customer'])){
-        header('location: login.php');
+    if(isset($_SESSION['customer']) & empty($_SESSION['customer'])){
+        header('location: customer-login.php');
     }
 $uid = $_SESSION['customerid'];
 $cart = $_SESSION['cart'];
-
 if(isset($_POST) & !empty($_POST)){
     if($_POST['agree'] == true){
         $country = filter_var($_POST['country'], FILTER_SANITIZE_STRING);
@@ -25,27 +24,29 @@ if(isset($_POST) & !empty($_POST)){
         $payment = filter_var($_POST['payment'], FILTER_SANITIZE_STRING);
         $zip = filter_var($_POST['zipcode'], FILTER_SANITIZE_NUMBER_INT);
 
-        $sql = "SELECT * FROM usersmeta WHERE uid=$uid";
+        $sql = "SELECT * FROM usersmeta WHERE userid='$uid'";
         $res = mysqli_query($con, $sql);
         $r = mysqli_fetch_assoc($res);
         $count = mysqli_num_rows($res);
         if($count == 1){
             //update data in usersmeta table
-            $usql = "UPDATE usersmeta SET country='$country', firstname='$fname', lastname='$lname', address1='$address1', address2='$address2', city='$city', state='$state',  zip='$zip', company='$company', mobile='$phone' WHERE uid=$uid";
+            $usql = "UPDATE usersmeta SET country='$country', firstname='$fname', lastname='$lname', address1='$address1', address2='$address2', city='$city', state='$state',  zip='$zip', company='$company', mobile='$phone' WHERE userid=$uid";
             $ures = mysqli_query($con, $usql) or die(mysqli_error($con));
             if($ures){
 
                 $total = 0;
-                foreach ($cart as $key => $value) {
-                    echo $key . " : " . $value['quantity'] ."<br>";
-                    $ordsql = "SELECT * FROM products WHERE product_id=$key";
-                    $ordres = mysqli_query($con, $ordsql);
-                    $ordr = mysqli_fetch_assoc($ordres);
+                if (is_array($cart) || is_object($cart)){
+                    foreach ($cart as $key => $value) {
+                        //echo $key . " : " . $value['quantity'] ."<br>";
+                        $ordsql = "SELECT * FROM products WHERE product_id=$key";
+                        $ordres = mysqli_query($con, $ordsql);
+                        $ordr = mysqli_fetch_assoc($ordres);
 
-                    $total = $total + ($ordr['product_price']*$value['quantity']);
+                        $total = $total + ($ordr['product_price']*$value['quantity']);
+                    }
                 }
 
-                echo $iosql = "INSERT INTO orders (uid, totalprice, orderstatus, paymentmode) VALUES ('$uid', '$total', 'Order Placed', '$payment')";
+                $iosql = "INSERT INTO orders (user_id, totalprice, orderstatus, paymentmode) VALUES ('$uid', '$total', 'Order Placed', '$payment')";
                 $iores = mysqli_query($con, $iosql) or die(mysqli_error($con));
                 if($iores){
                     //echo "Order inserted, insert order items <br>";
@@ -63,9 +64,9 @@ if(isset($_POST) & !empty($_POST)){
 
                         $orditmsql = "INSERT INTO orderitems (pid, orderid, productprice, pquantity) VALUES ('$pid', '$orderid', '$productprice', '$quantity')";
                         $orditmres = mysqli_query($con, $orditmsql) or die(mysqli_error($con));
-                        if($orditmres){
-                            echo "Order Item inserted redirect to my account page <br>";
-                        }
+                        //if($orditmres){
+                            //echo "Order Item inserted redirect to my account page <br>";
+                        //}
                     }
                 }
                 unset($_SESSION['cart']);
@@ -73,27 +74,27 @@ if(isset($_POST) & !empty($_POST)){
             }
         }else{
             //insert data in usersmeta table
-            $isql = "INSERT INTO usersmeta (country, firstname, lastname, address1, address2, city, state, zip, company, mobile, uid) VALUES ('$country', '$fname', '$lname', '$address1', '$address2', '$city', '$state', '$zip', '$company', '$phone', '$uid')";
+            $isql = "INSERT INTO usersmeta (country, firstname, lastname, address1, address2, city, state, zip, company, mobile, userid) VALUES ('$country', '$fname', '$lname', '$address1', '$address2', '$city', '$state', '$zip', '$company', '$phone', '$uid')";
             $ires = mysqli_query($con, $isql) or die(mysqli_error($con));
             if($ires){
 
                 $total = 0;
                 foreach ($cart as $key => $value) {
-                    echo $key . " : " . $value['quantity'] ."<br>";
-                    $ordsql = "SELECT * FROM products WHERE id=$key";
+                    //echo $key . " : " . $value['quantity'] ."<br>";
+                    $ordsql = "SELECT * FROM products WHERE product_id='$key'";
                     $ordres = mysqli_query($con, $ordsql);
                     $ordr = mysqli_fetch_assoc($ordres);
 
-                    $total = $total + ($ordr['price']*$value['quantity']);
-                }
+                    $total = $total + ($ordr['product_price']*$value['quantity']);
+                }$payment=['paymentmode'];
 
-                echo $iosql = "INSERT INTO orders (uid, totalprice, orderstatus, paymentmode) VALUES ('$uid', '$total', 'Order Placed', '$payment')";
+                echo $iosql = "INSERT INTO orders (user_id, totalprice, orderstatus, paymentmode) VALUES ('$uid', '$total', 'Order Placed', '$payment')";
                 $iores = mysqli_query($con, $iosql) or die(mysqli_error($con));
                 if($iores){
-                    echo "Order inserted, insert order items <br>";
+                    //echo "Order inserted, insert order items <br>";
                     $orderid = mysqli_insert_id($con);
                     foreach ($cart as $key => $value) {
-                        echo $key . " : " . $value['quantity'] ."<br>";
+                        //echo $key . " : " . $value['quantity'] ."<br>";
                         $ordsql = "SELECT * FROM products WHERE product_id=$key";
                         $ordres = mysqli_query($con, $ordsql);
                         $ordr = mysqli_fetch_assoc($ordres);
@@ -105,9 +106,9 @@ if(isset($_POST) & !empty($_POST)){
 
                         $orditmsql = "INSERT INTO orderitems (pid, orderid, productprice, pquantity) VALUES ('$pid', '$orderid', '$productprice', '$quantity')";
                         $orditmres = mysqli_query($con, $orditmsql) or die(mysqli_error($con));
-                        if($orditmres){
-                            echo "Order Item inserted redirect to my account page <br>";
-                        }
+                        //if($orditmres){
+                            //echo "Order Item inserted redirect to my account page <br>";
+                        //}
                     }
                 }
                 unset($_SESSION['cart']);
@@ -119,10 +120,10 @@ if(isset($_POST) & !empty($_POST)){
 
 }
 
-$sql = "SELECT * FROM usersmeta WHERE uid=$uid";
+$sql = "SELECT * FROM usersmeta WHERE userid='$uid'";
 $res = mysqli_query($con, $sql);
 $r = mysqli_fetch_assoc($res);
-?>
+ ?>
 
 <?php
 
@@ -137,7 +138,7 @@ include 'layout/head.php';
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a>
+                        <li><a href="index.php">Home</a>
                         </li>
                         <li>Checkout - Address</li>
                     </ul>
@@ -368,7 +369,7 @@ include 'layout/head.php';
           <option value="SI" countrynum="386">Slovenia</option>
           <option value="SB" countrynum="677">Solomon Islands</option>
           <option value="SO" countrynum="252">Somalia</option>
-          <option value="SOM" countrynum="252" selected="">Kenya</option>
+          <option value="KE" countrynum="254" selected="">Kenya</option>
           <option value="ZA" countrynum="27">South Africa</option>
           <option value="SGS" countrynum="44">South Georgia and the South Sandwich Islands</option>
           <option value="KR" countrynum="82">South Korea</option>
@@ -469,30 +470,20 @@ include 'layout/head.php';
             <table class="table table-bordered extra-padding">
                 <tbody>
                         <?php
-
-                    $total = 0;
-                    $arrProductIds=array();
-                    foreach ((array)$cart as $id => $value) {
-                        $arrProductIds[] = $id;
-                    }
-                    $strIds=implode(",", $arrProductIds);
-        
-                    $con = mysqli_connect("localhost","root","","furnstore");
-                    $stmt =  $con->prepare("SELECT * FROM products WHERE product_id IN (?)");
-                    $stmt->bind_param("s", $strIds);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-        
-                    $totalprice=0; 
-                    while ($cartr = $result->fetch_assoc()) {
-                        $subtotal=$_SESSION['cart'][$cartr['product_id']]['quantity']*$cartr['product_price']; 
-                        $totalprice+=$subtotal; 
+                    // print_r($cart);
+                $total = 0;
+                if (is_array($cart) || is_object($cart)){
+                    foreach ($cart as $key => $value) {
+                        // echo $key . " : " . $value['quantity'] ."<br>";
+                        $cartsql = "SELECT * FROM products WHERE product_id=$key";
+                        $cartres = mysqli_query($con, $cartsql);
+                        $cartr = mysqli_fetch_assoc($cartres);
 
                     
                  ?>
                     <?php 
                     $total = $total + ($cartr['product_price']*$value['quantity']);
-                } ?>
+                } }?>
                     <tr>
                         <th>Cart Subtotal</th>
                         <td><span class="amount">Kshs:<?php echo number_format($total, 2) ;?></span></td>
@@ -525,13 +516,12 @@ include 'layout/head.php';
                         <div class="col-md-4">
                             <input name="payment" id="radio2" class="css-checkbox" type="radio"><span value="cheque">Cheque Payment</span>
                             <div class="space20"></div>
-                            <p>Please send your cheque to MOZILAMO Enterprices, Mombasa Road, Nairobi, KENYA</p>
+                            <p>Please send your cheque to MOZILA Enterprices, Mombasa Road, Nairobi, KENYA</p>
                         </div>
                         <div class="col-md-4">
-                            <!-- <input name="payment" id="radio3" class="css-checkbox" type="radio"><span value="paypal">Paypal</span> -->
-                            <a href="tinyrequest.php">Mpesa</a>
+                            <input name="payment" id="radio3" class="css-checkbox" type="radio"><a href="tinyrequest.php">MPESA</a>
                             <div class="space20"></div>
-                            <p>Pay via PayPal; you can pay with your credit card if you don't have a PayPal account</p>
+                            <p>Pay via Mpesa; you can pay with your credit card if you don't have a mpesa account</p>
                         </div>
                     
                 </div>

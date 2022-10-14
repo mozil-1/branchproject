@@ -1,6 +1,8 @@
-<?php include('app_logic.php'); ?>
-<?php $errors=''; ?>
-<?php if (is_countable($errors) && count($errors) > 0) : ?>
+<?php
+session_start();
+ $errors = array();
+ $errors=''; 
+ if (is_countable($errors) && count($errors) > 0) : ?>
 	
   <div class="error">
   	<?php foreach ($errors as $error) : ?>
@@ -8,7 +10,71 @@
   	<?php endforeach ?>
   </div>
 <?php  endif ?>
+<?php
+if (isset($_POST['login_user'])) {
+  if (isset($_POST['username']) && isset($_POST['password'])){
 
+    function test_input($data){
+      $data = trim($data);
+      $data = stripslashes($data);
+      $data = htmlspecialchars($data);
+      return $data;
+
+    }
+
+    $username = test_input($_POST['username']);
+    $password = test_input( $_POST['password']);
+  
+    if (empty($username)) {
+		?>
+		<script>alert("Username is required")</script>
+		<?php
+    }
+    if (empty($password)) {
+		?>
+		<script>alert("Password is required")</script>
+		<?php
+    }
+  
+    if (!$errors) {
+        $password = md5($password);
+		$db = mysqli_connect('localhost', 'root', '', 'furnstore');
+
+        $query = "SELECT * FROM admin WHERE username='$username' AND password='$password' ";
+        $results = mysqli_query($db, $query);
+        
+        $row = mysqli_fetch_array($results);
+		// if ($row){
+
+			if ($row["user_type"]=="user" && $row["status"]==1) {
+			$_SESSION["username"] = $username;
+			$_SESSION["email"] = $row['email'];
+			header("location: customer-account.php");
+
+			}elseif( $row["user_type"]=="Admin" && $row["status"]==1){
+			$_SESSION['username'] = $username;
+			$_SESSION['email'] = $row['email'];
+			header("location: admin/index.php");
+
+			}elseif( $row["user_type"]=="staff" && $row["status"]==1){
+				$_SESSION['username'] = $username;
+				$_SESSION['email'] = $row['email'];			
+				header("location: staff-account.php");
+
+			}else{
+				?>
+			<script>alert("Wrong username")</script>
+			<?php
+            }
+	    }
+        
+      }else {
+		  header("location: login.php?message=1");
+      }
+	}
+    // }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -36,12 +102,12 @@ include 'layout/head.php';
 						 ?><div class="alert alert-danger" role="alert"> <?php echo "Invalid Login Credentials"; ?> </div>
 
 						 <?php } }?>
-						<form class="logregform" method="post" action="loginprocess.php">
+						<form class="logregform" method="post" action="login.php">
 							<div class="row">
 								<div class="form-group">
 									<div class="col-md-12">
-										<label>E-mail Address</label>
-										<input type="email" name="email" value="" class="form-control">
+										<label>Username</label>
+										<input type="username" name="username"  class="form-control">
 									</div>
 								</div>
 							</div>
@@ -51,7 +117,7 @@ include 'layout/head.php';
 									<div class="col-md-12">
 										<!-- <a class="pull-right" href="#">(Lost Password?)</a> -->
 										<label>Password</label>
-										<input type="password" name="password" value="" class="form-control">
+										<input type="password" name="password" class="form-control">
 									</div>
 								</div>
 							</div>
@@ -66,10 +132,11 @@ include 'layout/head.php';
 								</div>
 								<div class="col-md-6">
 									<p></p>
-									<button type="submit" class="button btn-md pull-right">Login</button>
+									<button type="submit" class="button btn-md pull-right" name="login_user">Login</button>
 								</div>
-								<p><a href="enter_email.php">Forgot your password?</a></p>
 							</div>
+							<p><a href="enter_email.php">Forgot your password?</a></p>
+
 						</form>
 					</div>
 				</div>

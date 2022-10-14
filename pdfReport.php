@@ -1,8 +1,7 @@
 <?php
 require('fpdf.php');
-
 class PDF extends FPDF{
- 
+
 
     function header(){
         $this->SetFont('Times','B',9);
@@ -56,12 +55,7 @@ while ($rows = mysqli_fetch_array($result)){
 
     $pdf->Cell(155, $h, '');
     $pdf->Cell(30, 5, $rows['product_keywords'],0,0);
-   
-    
-    
-   
-    
-    
+  
 }
 
 $pdf->Output();

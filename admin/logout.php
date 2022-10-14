@@ -1,8 +1,12 @@
 <?php
     session_start();
+    
+    unset($_SESSION['username']);
+    unset($_SESSION['password']);
+    unset($_SESSION['user_type']);
+    session_destroy();
     // Destroy session
-    if(session_destroy()) {
-        // Redirecting To Home Page
-        header("Location: Home.php");
-    }
+    header("Location: ../login.php");
+   
+	
 ?>

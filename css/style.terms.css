@@ -1,0 +1,14 @@
+.container{
+    width:500px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:40px;
+    padding:5px;
+    border:solid 1px;
+    border-radius:4px;
+}
+.license{
+    border:1px solid #ccc;
+    height:150px;
+    margin-bottom:40px;
+}

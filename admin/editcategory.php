@@ -197,7 +197,7 @@
     <td><span <?php echo $span;?>><?php echo $status;?></span></td>
     <td><?php echo $dt;?></td>
     <td><a class="btn btn-xs btn-warning" href="editcategory.php?edit_cat=<?php echo $cat_id; ?>">Edit</a>
-    <a  class="btn btn-xs btn-danger disabled" href="deletecategory.php?delete_cat=<?php echo $cat_id;?>">Delete</a></td>
+    <a  class="btn btn-xs btn-danger" href="deletecategory.php?delete_cat=<?php echo $cat_id;?>">Delete</a></td>
   
   </tr>
   <?php } ?>

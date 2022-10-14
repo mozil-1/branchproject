@@ -3,6 +3,7 @@
 <?php
 include 'function/functions.php';
 include 'layout/head.php';
+
 ?>
 
 
@@ -10,7 +11,7 @@ include 'layout/head.php';
     <div id="all">
         <div id="content">
 
-            <div class="container">
+            <div class="container-fluid">
                 <div class="col-md-12">
                     <div id="main-slider">
                         <div class="item">
@@ -34,7 +35,7 @@ include 'layout/head.php';
  _________________________________________________________ -->
             <div id="advantages">
 
-                <div class="container">
+                <div class="container-fluid">
                     <div class="same-height-row">
                         <div class="col-sm-4">
                             <div class="box same-height clickable">
@@ -81,14 +82,14 @@ include 'layout/head.php';
             <div id="hot">
 
                 <div class="box">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="col-md-12">
                             <h2>Top Products</h2>
                         </div>
                     </div>
                 </div>
 
-                <div class="container">
+                <div class="container-fluid">
                 <div class="agile_top_brands_grids">
                 <div class="col-sm-12">
                   <div class=" caption-slide-up">
@@ -115,14 +116,14 @@ include 'layout/head.php';
             <!-- *** HOT END *** -->
             <div id="advantages">
              <div class="box">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="col-md-12">
                             <h2>Product Categories</h2>
                         </div>
                     </div>
                 </div>
 
-            <div class="container">
+            <div class="container-fluid">
                 <div class="agile_top_brands_grids">
                          <div class="category-tab"><!--category-tab-->
             <div class="col-sm-12">
